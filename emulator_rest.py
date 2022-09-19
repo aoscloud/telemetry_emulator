@@ -1,6 +1,6 @@
 #
-#  Copyright (C) 2021 Renesas Electronics Corporation.
-#  Copyright (C) 2021 EPAM Systems, Inc.
+#  Copyright (C) 2018-2022 Renesas Electronics Corporation.
+#  Copyright (C) 2018-2022 EPAM Systems, Inc.
 #
 
 import json
@@ -50,6 +50,11 @@ class RestEmulatorCommandsRequestHandler(EmulatorCommandsRequestHandler):
 
     def do_POST(self):
         return self.do_GET()
+
+    def log_message(self, format, *args):
+        # Prevent any logs from HTTP WebServer
+        # we produce all needed logs by ourselfs
+        return
 
     def _set_attributes(self):
         data_len = int(self.headers.get('Content-Length', 0))
